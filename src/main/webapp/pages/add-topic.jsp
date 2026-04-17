@@ -18,7 +18,10 @@
         id = userObj.getId();
     }
 %>
-
+<%
+    String error =(String) request.getAttribute("error");
+%>
+<%=error%>
 <body>
     <form method="post" action="topic">
         <input type="hidden" value="add" name="action">

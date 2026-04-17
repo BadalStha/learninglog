@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.List" %>
 <%@ page import="com.learninglog.learninglogproject.topic.model.Topic" %><%--
   Created by IntelliJ IDEA.
@@ -7,15 +8,14 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<jsp:include page="/components/header.jsp"/>
 <html>
 <head>
     <title>Topics</title>
 </head>
 <body>
 TopicList
-<%
-  List<Topic> topicList = (List<Topic>) request.getAttribute("topics");
-%>
+
 
 <table border="1">
   <tr>
@@ -25,19 +25,21 @@ TopicList
     <th>CreatedDate</th>
   </tr>
   <tbody>
-  <%
-    for (Topic topic : topicList)
-    {
-  %>
+  <c:forEach var="t" items="${topics}">
     <tr>
-      <td><%=topic.getId()%></td>
-      <td><%=topic.getName()%></td>
-      <td><%=topic.getUser_id()%></td>
-      <td><%=topic.getCreatedAt()%></td>
+      <td>${t.getId()}</td>
+      <td>${t.getName()}</td>
+      <td>${t.getUser_id()}</td>
+      <td>${t.getCreatedAt()}</td>
+
+      <td>
+        <a href="topic?page=edit&id=${t.getId()}">Edit</a>
+        <a href="topic?page=delete&id=${t.getId()}">Delete</a>
+      </td>
     </tr>
-  <%}
-    %>
+  </c:forEach>
   </tbody>
 </table>
 </body>
 </html>
+<jsp:include page="/components/footer.jsp"/>

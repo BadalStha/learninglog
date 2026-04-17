@@ -22,6 +22,6 @@
         Name: <%= userDataObj.getId() %>
     </h2>
 
-    <a href="pages/add-topic.jsp">Add Topic</a>
+    <a href="/pages/add-topic.jsp">Add Topic</a>
 </body>
 </html>

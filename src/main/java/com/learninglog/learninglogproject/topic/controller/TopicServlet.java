@@ -32,6 +32,16 @@ public class TopicServlet extends HttpServlet {
             req.getRequestDispatcher("pages/topic-list.jsp").forward(req,resp);
         }
 
+        if ("edit".equals(action)){
+            try{
+                int id = Integer.parseInt(req.getParameter("id"));
+                Topic topicData = TopicDao.fetchTopicById(id);
+                req.setAttribute("topicData", topicData);
+            } catch (Exception e){
+                req.setAttribute("error", "Something went wrong" +e.getMessage());
+            }
+            req.getRequestDispatcher("pages/edit-topic-form.jsp").forward(req, resp);
+        }
         req.getRequestDispatcher("pages/add-topic.jsp")
                 .forward(req,resp);
     }
@@ -40,26 +50,28 @@ public class TopicServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         String action= req.getParameter("action");
+
         if(action.equals("add")){
             int userId = Integer.parseInt(req.getParameter("user-id"));
             String topicName = req.getParameter("topic-name");
             Timestamp createdDate = new Timestamp(System.currentTimeMillis());
 
             Topic topicObj = new Topic();
+
             topicObj.setUser_id(userId);
             topicObj.setName(topicName);
             topicObj.setCreatedAt(createdDate);
 
             try{
                 boolean result = TopicDao.insertTopic(topicObj);
-                if(result==true){
-                    resp.sendRedirect("/view-topics");
+                if(result){
+                   resp.sendRedirect("/topic?page=list");
                 }
                 else{
-                    // send error message to the page
+                    req.setAttribute("error","Error to add topic");
                 }
             }catch (Exception e){
-                ///  send error message to add-topic-form
+                req.setAttribute("error",e.getMessage());
             }
 
 

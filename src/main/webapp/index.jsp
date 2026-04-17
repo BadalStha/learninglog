@@ -1,22 +1,5 @@
-<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>JSP - Hello World</title>
-</head>
-<body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
+<jsp:include page="/components/header.jsp"/>
 
-<div class="main">
-    <div><a href="/topic?page=list">View Topic</a></div>
-    <div><a href="/topic">Add Topic</a></div>
-    <div><a href="/login">Login</a></div>
-    <div><a href="register">Register</a></div>
-</div>
+This is the index.jsp page
 
-<a href="/register">Register</a>
-<a href="/login">Login</a>
-</body>
-</html>
+<jsp:include page="components/footer.jsp"/>
