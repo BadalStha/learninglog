@@ -18,6 +18,7 @@
         Id: <input type="text" value="${topicData.id}" name="id" readonly>
         <br>
         Name: <input type="text" value="${topicData.name}" name="name">
+        <button>Edit</button>
     </form>
 
     <jsp:include page="/components/footer.jsp"/>
