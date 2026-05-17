@@ -26,7 +26,7 @@ public class ImageServlet extends HttpServlet {
         String imageName = req.getParameter("name");
         Part imagePart = req.getPart("image");
 
-        imagePart.write("location");
+//        imagePart.write("location");
 
         try {
             String uploadDir = ImageUtils.saveimageInDirectory(imagePart);

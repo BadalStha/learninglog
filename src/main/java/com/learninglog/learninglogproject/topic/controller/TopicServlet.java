@@ -73,12 +73,6 @@ public class TopicServlet extends HttpServlet {
             }catch (Exception e){
                 req.setAttribute("error",e.getMessage());
             }
-
-
-
-
-
-
         }
     }
 }

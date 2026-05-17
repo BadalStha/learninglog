@@ -10,7 +10,7 @@ public class ImageUtils {
         String location = "/home/badal/Documents/college/advanceProgramming/week5/learninglog/src/main/webapp/image";
 
         File imageUploadLocation = new File(location);
-        if (imageUploadLocation.exists()){
+        if (!imageUploadLocation.exists()){
             imageUploadLocation.mkdirs();
         }
         String fileName = imagePart.getSubmittedFileName();
